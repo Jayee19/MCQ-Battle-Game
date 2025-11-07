@@ -1,10 +1,11 @@
 {
-  "buildCommand": "cd Frontend && npm run build",
+  "buildCommand": "cd Frontend && npm install && npm run build",
   "outputDirectory": "Frontend/build",
-  "rewrites": [
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- Frontend/",
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
