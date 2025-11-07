@@ -24,7 +24,7 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/game/${_id}`);
+        const response = await axios.get(`http://localhost:5001/game/${_id}`);
         const filteredGames = response.data.filter(game => game._id === `${_id}`);
         setLength(filteredGames[0].noOfQuestions);
         setSubject(filteredGames[0].subject);
@@ -42,7 +42,7 @@ const Quiz = () => {
     const timer = setInterval(() => {
       setTimeRemaining(prevTime => {
         if (prevTime === 1) {
-          handleNext();
+          handleAutoNext();
           return 60;
         }
         return prevTime - 1;
@@ -50,7 +50,28 @@ const Quiz = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentQuestion]);
+  }, [currentQuestion, questions, correctAnswers, incorrectAnswers, unanswered, timeTaken]);
+
+  // Auto-advance when an option is selected
+  useEffect(() => {
+    if (selectedOption !== null) {
+      const timer = setTimeout(() => {
+        handleNext();
+      }, 800); // 800ms delay to show selection
+      return () => clearTimeout(timer);
+    }
+  }, [selectedOption]);
+
+  const handleAutoNext = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedOption(null);
+      setTimeRemaining(60);
+      setUnanswered(unanswered + 1);
+    } else {
+      setShowResults(true);
+    }
+  };
 
   const handleOptionSelect = (index) => {
     setSelectedOption(index);
@@ -62,7 +83,7 @@ const Quiz = () => {
 
     if (selectedOption === null) {
       setUnanswered(unanswered + 1);
-    } else if (questions[currentQuestion]?.options[selectedOption] === questions[currentQuestion]?.correctAnswer) {   // selectedOption === questions[currentQuestion].answer
+    } else if (questions[currentQuestion]?.options[selectedOption] === questions[currentQuestion]?.correctAnswer) {
       setCorrectAnswers(correctAnswers + 1);
     } else {
       setIncorrectAnswers(incorrectAnswers + 1);
@@ -84,7 +105,7 @@ const Quiz = () => {
 
     if (selectedOption === null) {
       setUnanswered(unanswered + 1);
-    } else if (questions[currentQuestion]?.options[selectedOption] === questions[currentQuestion]?.correctAnswer) {   // selectedOption === questions[currentQuestion].answer
+    } else if (questions[currentQuestion]?.options[selectedOption] === questions[currentQuestion]?.correctAnswer) {
       setCorrectAnswers(correctAnswers + 1);
     } else {
       setIncorrectAnswers(incorrectAnswers + 1);
@@ -96,7 +117,7 @@ const Quiz = () => {
   const totalTimeTaken = timeTaken.reduce((acc, time) => acc + time, 0);
 
   const updateDashboard = async () => {
-    const email = localStorage.getItem('userEmail'); // Fetch email from local storage
+    const email = localStorage.getItem('userEmail');
     const averageTimeTaken = totalTimeTaken / questions.length;
 
     const data = {
@@ -115,7 +136,7 @@ const Quiz = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/dashboard', data);
+      await axios.post('http://localhost:5001/dashboard', data);
       console.log("Dashboard updated successfully");
     } catch (error) {
       console.error('Error updating dashboard:', error);
@@ -123,8 +144,8 @@ const Quiz = () => {
   };
   
   const updateDashboardAndAccuracy = async () => {
-    const email = localStorage.getItem('userEmail'); // Fetch email from local storage
-    const accuracys = (correctAnswers*100) / length; // Calculate accuracy
+    const email = localStorage.getItem('userEmail');
+    const accuracys = (correctAnswers*100) / length;
   
     const AccuracySubject = {
       email: email,
@@ -139,10 +160,10 @@ const Quiz = () => {
     };
   
     try {
-      await axios.post('http://localhost:5000/accuracy', AccuracySubject);
+      await axios.post('http://localhost:5001/accuracy', AccuracySubject);
       console.log("Subject Accuracy updated successfully");
   
-      await axios.post('http://localhost:5000/accuracy', AccuracyDifficulty);
+      await axios.post('http://localhost:5001/accuracy', AccuracyDifficulty);
       console.log("Difficulty Accuracy updated successfully");
     } catch (error) {
       console.error('Error updating dashboard or accuracy:', error);
@@ -158,15 +179,15 @@ const Quiz = () => {
   };
 
   const containerStyle = {
-    backgroundColor: '#f8f9fa', // Milky color
+    backgroundColor: '#f8f9fa',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    color: '#000', // Black text
+    color: '#000',
     padding: '20px',
     borderRadius: '8px'
   };
 
   const optionStyle = {
-    color: '#000' // Black text for options
+    color: '#000'
   };
 
   return (
@@ -202,12 +223,7 @@ const Quiz = () => {
           </Row>
           <Row className="mb-3">
             <Col className="text-center">
-              {currentQuestion < questions.length - 1 ? (
-                <Button variant="secondary" onClick={handleNext}>Next</Button>
-              ) : (
-                <Button variant="primary" onClick={handleFinish}>Submit</Button>
-              )}
-              <Button variant="danger" onClick={handleFinish} className="ml-2">Finish</Button>
+              <Button variant="danger" onClick={handleFinish} className="ml-2">Finish Quiz</Button>
             </Col>
           </Row>
           <Row className="mb-3">

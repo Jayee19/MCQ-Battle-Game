@@ -1,0 +1,95 @@
+MCQ 1vs1 BATTLE GAME - PROJECT SUMMARY
+=====================================
+
+PROJECT OVERVIEW
+================
+Full-stack real-time multiplayer quiz application where users compete in MCQ-based challenges.
+
+TECH STACK
+==========
+Frontend: React 18, Bootstrap 5, Socket.IO, Chart.js, Axios
+Backend: Node.js/Express, MongoDB, Mongoose, JWT, Bcrypt
+Real-time: Socket.IO, Pusher
+
+KEY FEATURES
+============
+✓ Real-time multiplayer gameplay
+✓ User authentication (JWT)
+✓ Game rooms & matchmaking
+✓ Live scoring
+✓ Dashboard with analytics
+✓ Leaderboard system
+✓ Admin panel for quiz management
+
+QUICK START
+===========
+1. Clone: git clone https://github.com/yogeshlakwal3114/MCQ-Battle-Game.git
+2. Backend setup:
+   - cd Backend
+   - npm install
+   - Create .env file with MONGODB_URI, JWT_SECRET, PORT
+   - npm run dev
+
+3. Frontend setup:
+   - cd Frontend
+   - npm install
+   - npm start
+
+TESTING
+=======
+Manual tests to perform:
+- User signup/login flow
+- Create/join game room
+- Play quiz against opponent
+- Real-time score updates
+- Dashboard statistics
+- Mobile responsiveness
+
+DEPLOYMENT
+==========
+Frontend: Deploy to Vercel or Netlify
+Backend: Deploy to Railway, Heroku, or AWS EC2
+
+PORTFOLIO ENHANCEMENT IDEAS
+===========================
+Add Features:
+- User profiles & achievements
+- Multiple quiz categories
+- Difficulty levels
+- Tournaments mode
+- Achievements/badges
+
+Improve Code:
+- Add comprehensive tests
+- API documentation (Swagger)
+- Performance optimization
+- Caching with Redis
+- Error logging (Sentry)
+
+UI/UX Improvements:
+- Dark mode
+- Smooth animations
+- Sound effects
+- Better mobile UX
+- Accessibility features
+
+TROUBLESHOOTING
+===============
+MongoDB Connection: Check .env file and MongoDB Atlas IP whitelist
+CORS Error: Verify both backend and frontend are running
+Socket.IO Issues: Check ports and firewall settings
+Port Already in Use: Use lsof -ti:PORT | xargs kill -9
+
+NEXT STEPS
+==========
+1. Run setup with: ./QUICKSTART.sh
+2. Test locally
+3. Customize for portfolio
+4. Deploy frontend
+5. Deploy backend
+6. Create demo video/screenshots
+7. Document improvements
+
+Repository: https://github.com/yogeshlakwal3114/MCQ-Battle-Game
+License: MIT
+

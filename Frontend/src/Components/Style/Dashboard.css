@@ -1,38 +1,255 @@
-.Dasboard-data-text{
-    font-style: normal;
-    font-weight: bold;
-    color: grey;
+/* ===== DASHBOARD STYLES ===== */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6f42c1;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --light-bg: #f8f9fa;
+  --dark-text: #2c3e50;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.Dashboard-headline{
-    font-family: overpass;
-    font-size: 28px;
-    color: #007bff;
-    text-decoration: underline;
+* {
+  transition: all 0.3s ease;
 }
 
-/* Responsive styles for small devices (max-width: 768px) */
+.Dashboard-headline {
+  font-family: 'Overpass', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  animation: slideInDown 0.6s ease;
+}
+
+.Dasboard-data-text {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--dark-text);
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+/* Card Styles */
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.5s ease;
+}
+
+.dashboard-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
+
+/* Button Styles */
+.dashboard-button {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: fadeIn 0.6s ease;
+}
+
+.dashboard-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.dashboard-button:active {
+  transform: scale(0.98);
+}
+
+/* Performance Indicators */
+.performance-ring {
+  animation: spin 2s linear infinite;
+  transform-origin: center;
+}
+
+.performance-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(111, 66, 193, 0.1));
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Success Badge */
+.success-badge {
+  background: linear-gradient(135deg, var(--success-color), #20c997);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: scaleIn 0.4s ease;
+}
+
+/* Quiz Section */
+.quiz-section {
+  background: linear-gradient(135deg, var(--light-bg), white);
+  border-radius: 12px;
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: var(--shadow);
+}
+
+.quiz-button {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.quiz-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+}
+
+/* Subject Selection */
+.subject-button {
+  padding: 12px 24px;
+  margin: 8px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.subject-button:hover,
+.subject-button.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-    .Dasboard-data-text{
-        font-size: 12px;
-    }
-    .Dashboard-headline{
-        font-size: 22px;
-    }
-    .dashboard-button{
-        font-size: 14px;
-    }
+  .Dashboard-headline {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .Dasboard-data-text {
+    font-size: 14px;
+  }
+
+  .dashboard-card {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .dashboard-button {
+    font-size: 14px;
+    padding: 10px 20px;
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .quiz-section {
+    padding: 20px;
+    margin: 15px 0;
+  }
+
+  .subject-button {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .performance-metric {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .Dasboard-data-text{
-        font-size: 14px;
-    }
-    .Dashboard-headline{
-        font-size: 24px;
-    }
-    .dashboard-button{
-        font-size: 15px;
-    }
+  .Dashboard-headline {
+    font-size: 28px;
+  }
+
+  .Dasboard-data-text {
+    font-size: 15px;
+  }
+
+  .dashboard-button {
+    font-size: 15px;
+  }
 }
 

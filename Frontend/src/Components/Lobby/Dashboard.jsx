@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../Style/Dashboard.css';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5001';
 
 const Dashboard = () => {
   const [playMode, setPlayMode] = useState(null);

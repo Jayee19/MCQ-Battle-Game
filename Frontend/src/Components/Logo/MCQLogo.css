@@ -1,0 +1,193 @@
+/* ===== MCQ LOGO STYLES ===== */
+
+.mcq-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.2));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover Effect */
+.mcq-logo:hover .logo-svg {
+  filter: drop-shadow(0 8px 24px rgba(102, 126, 234, 0.4));
+  transform: scale(1.1) rotate(5deg);
+}
+
+.mcq-logo.hovered .logo-svg {
+  animation: logoHoverPulse 0.6s ease;
+}
+
+/* ===== OUTER CIRCLE ANIMATION ===== */
+.logo-outer-circle {
+  animation: circleRotate 8s linear infinite;
+  transform-origin: 100px 100px;
+}
+
+@keyframes circleRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== QUESTION MARKS ANIMATION ===== */
+.question-left {
+  animation: bounceLeft 2s ease-in-out infinite;
+  transform-origin: 70px 70px;
+}
+
+.question-right {
+  animation: bounceRight 2s ease-in-out infinite 0.5s;
+  transform-origin: 130px 70px;
+}
+
+@keyframes bounceLeft {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.1);
+  }
+}
+
+@keyframes bounceRight {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.1);
+  }
+}
+
+/* ===== TROPHY ANIMATION ===== */
+.trophy-icon {
+  animation: trophyPulse 1.5s ease-in-out infinite 0.3s;
+}
+
+@keyframes trophyPulse {
+  0%, 100% {
+    transform: scale(1) translateY(0px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15) translateY(-3px);
+    opacity: 1;
+  }
+}
+
+/* ===== STARS ANIMATION ===== */
+.star {
+  animation: starTwinkle 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.star-1 {
+  animation-delay: 0s;
+}
+
+.star-2 {
+  animation-delay: 0.5s;
+}
+
+.star-3 {
+  animation-delay: 1s;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+/* ===== CONNECTING LINES ANIMATION ===== */
+.connecting-lines {
+  opacity: 0;
+  animation: linesAppear 0.8s ease-in-out infinite 0.2s;
+}
+
+@keyframes linesAppear {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ===== PULSE CIRCLE ANIMATION ===== */
+.pulse-circle {
+  animation: circlePulse 1.2s ease-out infinite;
+}
+
+@keyframes circlePulse {
+  0% {
+    r: 8px;
+    opacity: 1;
+  }
+  100% {
+    r: 20px;
+    opacity: 0;
+  }
+}
+
+/* ===== GLOW BACKGROUND ===== */
+.logo-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 2s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  filter: blur(8px);
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* ===== HOVER PULSE ANIMATION ===== */
+@keyframes logoHoverPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .mcq-logo {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .mcq-logo:hover .logo-svg {
+    transform: scale(1.05) rotate(2deg);
+  }
+}

@@ -3,12 +3,12 @@ import { Container, Row, Col, Button, Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css'; 
-import quizImage from '../Images/Home.png'; 
+import HeroIllustration from '../Hero/HeroIllustration';
 import NavigationBar from './Navbar';
 import Features from './Features';
 import Footer from './Footer';
 
-import 'aos/dist/aos.css';  // For scrolling Function
+import 'aos/dist/aos.css';
 import AOS from 'aos';
 
 import { useAuth } from '../Context/AuthContext';
@@ -39,7 +39,6 @@ const Home = () => {
       });
     }
 
-    // Cleanup function to remove the event listener
     return () => {
       if (backToTopButton) {
         backToTopButton.removeEventListener('click', () => {
@@ -58,7 +57,7 @@ const Home = () => {
       }, 2000); 
     };
 
-    const intervalId = setInterval(cycleText, 6000); // Cycle every 6 seconds
+    const intervalId = setInterval(cycleText, 6000);
 
     return () => clearInterval(intervalId);
   }, [textIndex]);
@@ -84,7 +83,7 @@ const Home = () => {
                 <Button onClick={handleNavigateToLobby} variant="primary" size="lg" className="mr-3 mb-2 play-button">Go to lobby</Button>
               </Col>
               <Col md={6} className="image-section">
-                <img src={quizImage} alt="Quiz Time" className="quiz-image" />
+                <HeroIllustration />
               </Col>
           </Row>
         </Container>
@@ -92,7 +91,6 @@ const Home = () => {
       <Features />
       <Footer />
 
-      {/* Toast component for displaying login error */}
       <Toast
         show={showToast}
         onClose={() => setShowToast(false)}

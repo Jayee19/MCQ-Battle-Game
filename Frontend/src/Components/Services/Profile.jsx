@@ -3,7 +3,7 @@ import { Button, Image, Modal, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import ProfileIcon from '../Images/profilei.png';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5001';
 const profilePicture = ProfileIcon;
 
 const ProfileButton = () => {

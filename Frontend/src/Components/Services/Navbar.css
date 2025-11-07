@@ -1,63 +1,170 @@
+/* ===== NAVBAR STYLES ===== */
+
 .custom-navbar {
-    background-color: #11354c;
-    padding: 10px 20px; 
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  padding: 12px 20px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* ===== NAVBAR BRAND ===== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  gap: 12px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BRAND TEXT ===== */
+.navbar-brand-text {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f5576c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  animation: brandPulse 0.8s ease;
+}
+
+.navbar-brand:hover .navbar-brand-text {
+  filter: brightness(1.2);
+  text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+@keyframes brandPulse {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
   }
-  
-  /* .company-name {
-    color: white;
-    margin-left: 10px;
-    font-size: 1.5rem;
-  } */
-  
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    margin-right: auto; 
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .navbar-collapse {
-    justify-content: flex-end;
-  }
-  
-  .nav-links .nav-link {
-    color: white !important;
-    font-size: 1rem;
-    margin-right: 20px;
-  }
-  
-  .nav-links .nav-link:hover {
-    color: #007bff !important;
-  }
-  
-  .login-button {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    padding: 5px 15px;
-    margin-left: 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-button:hover {
-    background-color: #0056b3;
+}
+
+/* ===== NAVBAR COLLAPSE ===== */
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links .nav-link {
+  color: #a8b3c8 !important;
+  font-size: 0.95rem;
+  margin-right: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-links .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.nav-links .nav-link:hover {
+  color: #ffffff !important;
+}
+
+.nav-links .nav-link:hover::after {
+  width: 100%;
+}
+
+/* ===== LOGIN BUTTON ===== */
+.login-button {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  border: none !important;
+  color: white !important;
+  font-size: 0.95rem !important;
+  padding: 8px 20px !important;
+  margin-left: 20px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #764ba2, #667eea) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
+}
+
+.login-button:active {
+  transform: translateY(0px) !important;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+  .custom-navbar {
+    padding: 10px 15px;
   }
 
-  /* Responsive styles */
-@media (max-width: 992px) {
-    .navbar-collapse {
-      padding: 10px;
-    }
-    
-    .nav-links .nav-link {
-      margin-right: 0;
-      padding: 10px 0;
-      text-align: center;
-    }
-    
-    .login-button {
-      margin: 10px 0 0 0;
-      width: 100%;
-    }
+  .navbar-brand-text {
+    font-size: 1.1rem;
   }
+
+  .navbar-collapse {
+    padding: 15px;
+    background: rgba(26, 31, 58, 0.95);
+    border-radius: 10px;
+    margin-top: 10px;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-links .nav-link {
+    margin-right: 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .nav-links .nav-link::after {
+    display: none;
+  }
+
+  .nav-links .nav-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 5px;
+  }
+
+  .login-button {
+    margin: 10px 0 0 0 !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    gap: 8px;
+  }
+
+  .navbar-brand-text {
+    font-size: 1rem;
+  }
+
+  .nav-links .nav-link {
+    font-size: 0.85rem;
+  }
+}
   

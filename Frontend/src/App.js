@@ -9,6 +9,7 @@ import './App.css';
 import Lobby from './Components/Lobby/lobby';
 import Rooms from './Components/Lobby/Rooms';
 import QuizRoomCard from './Components//Lobby/QuizRoomCard';
+import Background3D from './Components/3D-Background';
 
 import { AuthProvider } from './Components/Context/AuthContext';
 
@@ -18,6 +19,7 @@ const App = () => {
     <Router>
       {/* <NavigationBar /> */}
       <AuthProvider>
+        <Background3D />
         <div className="App">
           <Routes>
             <Route path='/' element={<Home />}></Route>

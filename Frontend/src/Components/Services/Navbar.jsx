@@ -3,9 +3,9 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css'; 
-import logo from '../Images/logo.jpg';
+import MCQLogo from '../Logo/MCQLogo';
 
-import 'aos/dist/aos.css';  // For scrolling Function
+import 'aos/dist/aos.css';
 import AOS from 'aos';
 
 import { useAuth } from '../Context/AuthContext';
@@ -22,15 +22,9 @@ const CustomNavbar = () => {
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
-        <Navbar.Brand onClick={() => navigate('/')} className="d-flex align-items-center" style={{ cursor: 'pointer' }}>
-          <img
-            src={logo}
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-            alt="Battle Game logo"
-          />
-          {/* <span className="company-name">Battle-Game</span> */}
+        <Navbar.Brand onClick={() => navigate('/')} className="d-flex align-items-center" style={{ cursor: 'pointer', gap: '10px' }}>
+          <MCQLogo size={45} />
+          <span className="navbar-brand-text">MCQ Battle</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
